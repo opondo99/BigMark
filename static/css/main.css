@@ -4,3 +4,7 @@
     border: 0;
     width: 100%;
 }
+
+img{
+    max-width: 100%;
+}
