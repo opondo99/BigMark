@@ -31,13 +31,21 @@ class Product(models.Model):
         return reverse("potshop:product", kwargs={
             "slug": self.slug
         })
+        
+    def get_add_to_cart(self):
+        return reverse("potshop:add-to-cart", kwargs={
+            'slug':self.slug
+        })
     
 
 class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return f"{self.quantity} of {self.product.title}"
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -47,5 +55,5 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.title
+        return self.user.username
     
