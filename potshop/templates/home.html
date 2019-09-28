@@ -4,61 +4,235 @@
 
 {% block content %}
 <div class='Homepage'>
-<div class="mix col-md-6 col-lg-12 brand">
-		<a href="{% url 'home'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome.jpg" style="background-image: url('media/welcome.jpg');">
-		<div class="pi-inner">
-			<h2>Home</h2>
-		</div>						
-		</a>
-		{% comment %} <div class="portfolio-meta">
-			<h2>Brand Campaign</h2>
-			<p>Graphic design</p>
-		</div> {% endcomment %}
+		<!--Carousel Wrapper-->
+	<div id="carousel-thumb" data-ride="carousel">
+	<div class="carousel-inner mt-5 pt-4" role="listbox">
+		<div class="carousel-item">
+		<img class="d-block w-100" src="media/welcome.jpg"
+			alt="First slide">
+		</div>
+		<div class="carousel-item">
+		<img class="d-block w-100" src="media/welcome3.jpg"
+			alt="Second slide">
+		</div>
+		<div class="carousel-item">
+		<img class="d-block w-100" src="media/welcome4.jpg"
+			alt="Third slide">
+		</div>
 	</div>
-<div class="mix col-md-6 col-lg-12 brand">
-		<a href="{% url 'store'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome2.jpg" style="background-image: url('media/welcome2.jpg');">
-		<div class="pi-inner">
-			<h2>store</h2>
-		</div>						
-		</a>
-		{% comment %} <div class="portfolio-meta">
-			<h2>Brand Campaign</h2>
-			<p>Graphic design</p>
-		</div> {% endcomment %}
 	</div>
-<div class="mix col-md-6 col-lg-12 brand">
-		<a href="{% url 'lookbook'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/lookbook.webp" style="background-image: url('media/lookbook.webp');">
-		<div class="pi-inner">
-			<h2>lookbook</h2>
-		</div>						
+<!--/.Carousel Wrapper-->
+
+	<!--Store-->
+
+		<!-- News jumbotron -->
+	<div id="links" class="jumbotron text-center hoverable p-4">
+
+	<!-- Grid row -->
+	<div class="row">
+
+		<!-- Grid column -->
+		<div class="col-md-4 offset-md-1 mx-3 my-3">
+
+		<!-- Featured image -->
+		<div class="view overlay">
+			<img src="/media/closet-clothes-colors-581087.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+			<a>
+			<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+
+		</div>
+		<!-- Grid column -->
+
+		<!-- Grid column -->
+		<div class="col-md-7 text-md-left ml-3 mt-3">
+
+		<!-- Excerpt -->
+		<a href="{% url 'potshop:store'%}" class="green-text">
+			<h4 class="h4 pb-1"><i class="fas fa-desktop pr-1"></i> Store</h4>
 		</a>
-		{% comment %} <div class="portfolio-meta">
-			<h2>Brand Campaign</h2>
-			<p>Graphic design</p>
-		</div> {% endcomment %}
+
+		<h4 class="h4 mb-4">This is title of the news</h4>
+
+		<p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque, totam
+			rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+			dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+		<p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+		<a class="btn btn-success" href="{% url 'potshop:store'%}">Shop</a>
+
+		</div>
+		<!-- Grid column -->
+
 	</div>
-<div class="mix col-md-6 col-lg-12 brand">
-		<a href="{% url 'about'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/about.jpg" style="background-image: url('media/about.jpg');">
-		<div class="pi-inner">
-			<h2>about</h2>
-		</div>						
+	<!-- Grid row -->
+
+	</div>
+	<!-- News jumbotron -->
+
+
+	<!--Look Book-->
+
+		<!-- News jumbotron -->
+	<div id="links" class="jumbotron text-center hoverable p-4">
+
+	<!-- Grid row -->
+	<div class="row">
+
+		<!-- Grid column -->
+		<div class="col-md-4 offset-md-1 mx-3 my-3">
+
+		<!-- Featured image -->
+		<div class="view overlay">
+			<img src="/media/buildings-casual-city-1579019.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+			<a>
+			<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+
+		</div>
+		<!-- Grid column -->
+
+		<!-- Grid column -->
+		<div class="col-md-7 text-md-left ml-3 mt-3">
+
+		<!-- Excerpt -->
+		<a href="{% url 'potshop:lookbook'%}" class="green-text">
+			<h4 class="h4 pb-1"><i class="fas fa-desktop pr-1"></i> Look Book</h4>
 		</a>
-		{% comment %} <div class="portfolio-meta">
-			<h2>Brand Campaign</h2>
-			<p>Graphic design</p>
-		</div> {% endcomment %}
+
+		<h4 class="h4 mb-4">This is title of the news</h4>
+
+		<p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque, totam
+			rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+			dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+		<p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+		<a class="btn btn-success" href="{% url 'potshop:lookbook'%}">Look Book</a>
+
+		</div>
+		<!-- Grid column -->
+
 	</div>
-<div class="mix col-md-6 col-lg-12 brand">
-<a href="" class="portfolio-item pi-style2 set-bg" data-setbg="media/contact.jpg" style="background-image: url('media/contact.jpg');">
-		<div class="pi-inner">
-			<h2>contact</h2>
-		</div>						
+	<!-- Grid row -->
+
+	</div>
+	<!-- News jumbotron -->
+
+
+	<!--About-->
+		<!-- News jumbotron -->
+	<div id="links" class="jumbotron text-center hoverable p-4">
+
+	<!-- Grid row -->
+	<div class="row">
+
+		<!-- Grid column -->
+		<div class="col-md-4 offset-md-1 mx-3 my-3">
+
+		<!-- Featured image -->
+		<div class="view overlay">
+			<img src="/media/adult-collaboration-colleagues-1308780.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+			<a>
+			<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+
+		</div>
+		<!-- Grid column -->
+
+		<!-- Grid column -->
+		<div class="col-md-7 text-md-left ml-3 mt-3">
+
+		<!-- Excerpt -->
+		<a href="{% url 'potshop:about'%}" class="green-text">
+			<h4 class="h4 pb-1"><i class="fas fa-desktop pr-1"></i> About</h4>
 		</a>
-		{% comment %} <div class="portfolio-meta">
-			<h2>Brand Campaign</h2>
-			<p>Graphic design</p>
-		</div> {% endcomment %}
+
+		<h4 class="h4 mb-4">This is title of the news</h4>
+
+		<p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque, totam
+			rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+			dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+		<p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+		<a class="btn btn-success" href="{% url 'potshop:about'%}">About Us</a>
+
+		</div>
+		<!-- Grid column -->
+
 	</div>
-<div class="homepage-item">Newsletter</div>
+	<!-- Grid row -->
+
+	</div>
+	<!-- News jumbotron -->
+
+	<!--Contact-->
+		<!-- News jumbotron -->
+	<div id="links" class="jumbotron text-center hoverable p-4">
+
+	<!-- Grid row -->
+	<div class="row">
+
+		<!-- Grid column -->
+		<div class="col-md-4 offset-md-1 mx-3 my-3">
+
+		<!-- Featured image -->
+		<div class="view overlay">
+			<img src="/media/connection-contact-focus-955081.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+			<a>
+			<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+
+		</div>
+		<!-- Grid column -->
+
+		<!-- Grid column -->
+		<div class="col-md-7 text-md-left ml-3 mt-3">
+
+		<!-- Excerpt -->
+		<a href="#" class="green-text">
+			<h4 class="h4 pb-1"><i class="fas fa-desktop pr-1"></i> Contact</h4>
+		</a>
+
+		<h4 class="h4 mb-4">This is title of the news</h4>
+
+		<p class="font-weight-normal">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque, totam
+			rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+			dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
+		<p class="font-weight-normal">by <a><strong>Carine Fox</strong></a>, 19/08/2016</p>
+
+		<a class="btn btn-success">Reach Out</a>
+
+		</div>
+		<!-- Grid column -->
+
+	</div>
+	<!-- Grid row -->
+
+	</div>
+	<!-- News jumbotron -->
+
+	<div class="homepage-item">Newsletter</div>
 </div>
+
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("carousel-item");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 3000); // Change image every 2 seconds
+}
+</script>
 {% endblock %}  

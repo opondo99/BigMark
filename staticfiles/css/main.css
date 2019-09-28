@@ -8,3 +8,12 @@
 img{
     max-width: 100%;
 }
+
+#carousel-thumb{
+    height: fit-content;
+    margin-bottom: 20px;
+}
+
+.carousel-inner{
+    height: -webkit-fill-available;
+}
