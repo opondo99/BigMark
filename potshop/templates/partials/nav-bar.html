@@ -1,6 +1,6 @@
-
+{% load cart_template_tags  %}
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light unique-color-dark scrolling-navbar mb-5 pt-4">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light unique-color-dark scrolling-navbar pt-4">
   <div class="container">
 
     <!-- Brand -->
@@ -37,29 +37,31 @@
 
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link waves-effect">
-            <span class="badge red z-depth-1 mr-1"> 1 </span>
-            <i class="fas fa-shopping-cart" style="color:#6f367a;"></i>
-            <span class="clearfix d-none d-sm-inline-block" style="color:white;"> Cart </span>
-          </a>
-        </li>
-        {% comment %} <li class="nav-item">
-          <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
-            target="_blank">
-            <i class="fab fa-github mr-2"></i>MDB GitHub
-          </a>
-        </li> {% endcomment %}
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'potshop:order-summary' %}" class="nav-link waves-effect">
+              <span class="badge red z-depth-1 mr-1"> 1 </span>
+              <i class="fas fa-shopping-cart" style="color:#6f367a;"></i>
+              <span class="clearfix d-none d-sm-inline-block" style="color:white;"> Cart </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+              <span class="clearfix d-none d-sm-inline-block" style="color:white;"> Logout </span>
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+              <span class="clearfix d-none d-sm-inline-block" style="color:white;"> Login </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+              <span class="clearfix d-none d-sm-inline-block" style="color:white;"> SignUp </span>
+            </a>
+          </li>
+        {% endif %}
       </ul>
 
     </div>

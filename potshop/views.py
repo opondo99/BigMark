@@ -1,6 +1,9 @@
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
 from .models import Product, OrderItem, Order
@@ -20,7 +23,22 @@ class AboutPageView(TemplateView):
     
 class StorePageView(ListView):
     model = Product
+    paginate_by = 10
     template_name = "shop.html"
+    
+    
+class OrderSummaryView(LoginRequiredMixin,View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered = False)
+            context = {
+                'object':order
+            }
+            return render(self.request, "order-summary.html", context)
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/store")
+        
     
 class BookPageView(TemplateView):
     template_name = "look-book.html"
@@ -29,6 +47,7 @@ class productPageView(DetailView):
     model = Product
     template_name = "product-page.html"
     
+@login_required  
 def add_to_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     
@@ -52,16 +71,18 @@ def add_to_cart(request, slug):
             
             order.product.add(order_item)
             messages.info(request, "This item was added to your cart")
-            return redirect("potshop:product", slug=slug)
+            return redirect("potshop:order-summary")
         
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.product.add(order_item)
-        return redirect("potshop:product", slug=slug)
+        return redirect("potshop:order-summary")
         
-    return redirect("potshop:product", slug=slug)
+    return redirect("potshop:order-summary")
 
+
+@login_required  
 def remove_from_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
@@ -77,6 +98,7 @@ def remove_from_cart(request, slug):
             )[0]
             order.product.remove(order_item)
             messages.info(request, "This item was removed from your cart")
+            return redirect("potshop:order-summary")
         else:
             #order does not have this order item
             messages.info(request, "This item was not in your cart")
@@ -85,7 +107,38 @@ def remove_from_cart(request, slug):
         #the user doesn't have an order
         messages.info(request, "You do not have an active order")
         return redirect("potshop:product", slug=slug)
-    return redirect("potshop:product", slug=slug)
+
+
+
+@login_required  
+def remove_single_item_from_cart(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    
+    if order_qs.exists():
+        order = order_qs[0]
+        
+        if order.product.filter(product__slug=product.slug).exists():
+            order_item = OrderItem.objects.filter(
+                product=product,
+                user=request.user,
+                ordered=False
+            )[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order.product.remove(order_item)
+            messages.info(request, "This item was updated")
+        else:
+            #order does not have this order item
+            messages.info(request, "This item was not in your cart")
+            return redirect("potshop:order-summary")
+    else:
+        #the user doesn't have an order
+        messages.info(request, "You do not have an active order")
+        return redirect("potshop:product", slug=slug)
+    return redirect("potshop:order-summary")
 
     
 class CheckoutPageView(TemplateView):
