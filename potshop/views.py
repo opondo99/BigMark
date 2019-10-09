@@ -6,7 +6,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
-from .models import Product, OrderItem, Order
+from .models import Product, OrderItem, Order, BillingAddress
+from .forms import CheckoutForm
 
 # Create your views here.
 # def item_list(request):
@@ -141,6 +142,47 @@ def remove_single_item_from_cart(request, slug):
     return redirect("potshop:order-summary")
 
     
-class CheckoutPageView(TemplateView):
-    template_name = "checkout-page.html"
+class CheckoutPageView(View):
+    def get(self, *args, **kwargs):
+        # form
+        form = CheckoutForm()
+        
+        context = {
+            'form' : form
+        }
+        return render(self.request, "checkout-page.html", context)
     
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered = False)
+            if form.is_valid():
+                street_address = form.cleaned_data.get('street_address')
+                apartment = form.cleaned_data.get('apartment')
+                country = form.cleaned_data.get('country')
+                zip = form.cleaned_data.get('zip')
+                # TODO: add functionality
+                # same_shipping_address = form.cleaned_data.get('same_shipping_address')
+                # save_info = form.cleaned_data.get('save_info')
+                payment_option = form.cleaned_data.get('payment_option')
+                billing_address = BillingAddress(
+                    user = self.request.user,
+                    street_address = street_address,
+                    apartment_address = apartment_address,
+                    country = country,
+                    zip=zip
+                )
+                billing_address.save()
+                order.billing_address = billing_address
+                order.save()
+                # TODO: add redirect to the selected payment option
+                return redirect('potshop:checkout')
+            
+            messages.warning(self.request, "Failed checkout")
+            return redirect('potshop:checkout')
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("core:order-summary")
+        
+        
+        
