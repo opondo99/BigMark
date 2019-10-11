@@ -4,12 +4,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Look Book{% endblock %}</title>
+    <title>{% block head_title %}Look Book{% endblock %}</title>
 </head>
 <body>
-    {% block content %}
-        <h1>Welcome to the fashion lookbook</h1>
-    {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center mt-5 pt-5">
+            <h1>Look Book</h1>
+        </div>
+    </div>
+    <!-- Grid row -->
+    <div class="row"> 
+
+    {% comment %} <!-- Grid column -->
+    <div class="col-md-12 d-flex justify-content-center mb-5 mt-1 pt-4">
+
+        <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="all">All</button>
+        <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="1">Mountains</button>
+        <button type="button" class="btn btn-outline-black waves-effect filter" data-rel="2">Sea</button>
+
+    </div>
+    <!-- Grid column --> {% endcomment %}
+
+    </div>
+    <!-- Grid row -->
+
+    <!-- Grid row -->
+    <div class="gallery w-75 mx-auto mb-5 pb-4" id="gallery">
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 2">
+            <img class="img-fluid" src="/media/adult-art-black-t-shirt-1656684.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/adult-collaboration-colleagues-1308780.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/adults-architecture-buildings-1888306 (2).jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 2">
+            <img class="img-fluid" src="/media/casual-daylight-eyewear-2872929.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 2">
+            <img class="img-fluid" src="/media/black-jeans-design-fashion-1933589.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/attractive-beautiful-beauty-1771383.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/fashion-man-outfit-2180895.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/fashion-female-girl-1374913.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="mb-3 pics animation all 1">
+            <img class="img-fluid" src="/media/child-city-daytime-955341.jpg" alt="Card image cap">
+        </div>
+        <!-- Grid column -->
+    </div>
+</div>
+
+<!-- Grid row -->
+
+<script>
+$(function() {
+var selectedClass = "";
+$(".filter").click(function(){
+selectedClass = $(this).attr("data-rel");
+$("#gallery").fadeTo(100, 0.1);
+$("#gallery div").not("."+selectedClass).fadeOut().removeClass('animation');
+setTimeout(function() {
+$("."+selectedClass).fadeIn().addClass('animation');
+$("#gallery").fadeTo(300, 1);
+}, 300);
+});
+});
+</script>
+{% endblock %}    
+
+{% comment %} <script>
+$(function() {
+var selectedClass = "";
+$(".filter").click(function(){
+selectedClass = $(this).attr("data-rel");
+$("#gallery").fadeTo(100, 0.1);
+$("#gallery div").not("."+selectedClass).fadeOut().removeClass('animation');
+setTimeout(function() {
+$("."+selectedClass).fadeIn().addClass('animation');
+$("#gallery").fadeTo(300, 1);
+}, 300);
+});
+});
+</script> {% endcomment %}
 
 </body>
 </html>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main>
+    <div class="container">
+        <div class="table-responsive text-nowrap w-75 mx-auto">
+            <h2 class="pt-3">Order Summary</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Item Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order_item in object.product.all %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ order_item.product.title }}</td>
+                    <td>Ksh {{ order_item.product.price }}</td>
+
+                    <td>
+                        <a href="{% url "potshop:remove-single-item-from-cart" order_item.product.slug %}"><i class="far fa-minus-square mr-2"></i></a>
+                            {{ order_item.quantity }}
+                        <a href="{% url "potshop:add-to-cart" order_item.product.slug %}"><i class="far fa-plus-square ml-2"></i></a>
+                    </td>
+
+                    <td>
+                    {% if order_item.product.discount_price%}
+                        Ksh {{ order_item.get_total_discount_item_price }}
+                        <span class="badge badge-primary">Saving Ksh {{ order_item.get_amount_saved }}</span>
+                    {% else %}
+                        Ksh {{ order_item.get_total_item_price }}
+                    {% endif %}
+                    <a style="color: red;" href="{% url "potshop:remove-from-cart" order_item.product.slug %}"><i class="fas fa-trash-alt float-right"></i></a>
+                    </td>
+                    
+                </tr>
+                
+                {% endfor %}
+                <tr>
+                    <td colspan="4">Order Total</td>
+                    <td><b>Ksh {{ object.get_total }}</b></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                    <a class="btn btn-warning float-right ml-2" href="/checkout/">Proceed To Checkout</a>
+                    <a class="btn btn-primary float-right" href="/store/">Continue Shopping</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
