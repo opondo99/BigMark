@@ -1,9 +1,13 @@
-.main{
+body{
     padding: 0;
     margin: 0;
-    border: 0;
     width: 100%;
 }
+
+/* body .container {
+    min-height: 100%;
+    margin-bottom: -50px;
+} */
 
 img{
     max-width: 100%;
