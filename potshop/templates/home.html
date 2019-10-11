@@ -1,71 +1,64 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Welcome Home {% endblock %}</title>
-</head>
-<body>
-  {% block content %}
-  <div class='Homepage'>
-    <div class="mix col-md-6 col-lg-12 brand">
-			<a href="{% url 'home'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome.jpg" style="background-image: url('media/welcome.jpg');">
-			<div class="pi-inner">
-				<h2>Home</h2>
-			</div>						
-			</a>
-			{% comment %} <div class="portfolio-meta">
-				<h2>Brand Campaign</h2>
-				<p>Graphic design</p>
-			</div> {% endcomment %}
-		</div>
-    <div class="mix col-md-6 col-lg-12 brand">
-			<a href="{% url 'store'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome2.jpg" style="background-image: url('media/welcome2.jpg');">
-			<div class="pi-inner">
-				<h2>store</h2>
-			</div>						
-			</a>
-			{% comment %} <div class="portfolio-meta">
-				<h2>Brand Campaign</h2>
-				<p>Graphic design</p>
-			</div> {% endcomment %}
-		</div>
-    <div class="mix col-md-6 col-lg-12 brand">
-			<a href="{% url 'lookbook'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/lookbook.webp" style="background-image: url('media/lookbook.webp');">
-			<div class="pi-inner">
-				<h2>lookbook</h2>
-			</div>						
-			</a>
-			{% comment %} <div class="portfolio-meta">
-				<h2>Brand Campaign</h2>
-				<p>Graphic design</p>
-			</div> {% endcomment %}
-		</div>
-    <div class="mix col-md-6 col-lg-12 brand">
-			<a href="{% url 'about'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/about.jpg" style="background-image: url('media/about.jpg');">
-			<div class="pi-inner">
-				<h2>about</h2>
-			</div>						
-			</a>
-			{% comment %} <div class="portfolio-meta">
-				<h2>Brand Campaign</h2>
-				<p>Graphic design</p>
-			</div> {% endcomment %}
-		</div>
-    <div class="mix col-md-6 col-lg-12 brand">
-    <a href="" class="portfolio-item pi-style2 set-bg" data-setbg="media/contact.jpg" style="background-image: url('media/contact.jpg');">
-			<div class="pi-inner">
-				<h2>contact</h2>
-			</div>						
-			</a>
-			{% comment %} <div class="portfolio-meta">
-				<h2>Brand Campaign</h2>
-				<p>Graphic design</p>
-			</div> {% endcomment %}
-		</div>
-    <div class="homepage-item">Newsletter</div>
-  </div>
-  {% endblock %}  
-</body>
-</html>
+{% block title %}Welcome Home {% endblock %}</title>
+
+{% block content %}
+<div class='Homepage'>
+<div class="mix col-md-6 col-lg-12 brand">
+		<a href="{% url 'home'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome.jpg" style="background-image: url('media/welcome.jpg');">
+		<div class="pi-inner">
+			<h2>Home</h2>
+		</div>						
+		</a>
+		{% comment %} <div class="portfolio-meta">
+			<h2>Brand Campaign</h2>
+			<p>Graphic design</p>
+		</div> {% endcomment %}
+	</div>
+<div class="mix col-md-6 col-lg-12 brand">
+		<a href="{% url 'store'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/welcome2.jpg" style="background-image: url('media/welcome2.jpg');">
+		<div class="pi-inner">
+			<h2>store</h2>
+		</div>						
+		</a>
+		{% comment %} <div class="portfolio-meta">
+			<h2>Brand Campaign</h2>
+			<p>Graphic design</p>
+		</div> {% endcomment %}
+	</div>
+<div class="mix col-md-6 col-lg-12 brand">
+		<a href="{% url 'lookbook'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/lookbook.webp" style="background-image: url('media/lookbook.webp');">
+		<div class="pi-inner">
+			<h2>lookbook</h2>
+		</div>						
+		</a>
+		{% comment %} <div class="portfolio-meta">
+			<h2>Brand Campaign</h2>
+			<p>Graphic design</p>
+		</div> {% endcomment %}
+	</div>
+<div class="mix col-md-6 col-lg-12 brand">
+		<a href="{% url 'about'%}" class="portfolio-item pi-style2 set-bg" data-setbg="media/about.jpg" style="background-image: url('media/about.jpg');">
+		<div class="pi-inner">
+			<h2>about</h2>
+		</div>						
+		</a>
+		{% comment %} <div class="portfolio-meta">
+			<h2>Brand Campaign</h2>
+			<p>Graphic design</p>
+		</div> {% endcomment %}
+	</div>
+<div class="mix col-md-6 col-lg-12 brand">
+<a href="" class="portfolio-item pi-style2 set-bg" data-setbg="media/contact.jpg" style="background-image: url('media/contact.jpg');">
+		<div class="pi-inner">
+			<h2>contact</h2>
+		</div>						
+		</a>
+		{% comment %} <div class="portfolio-meta">
+			<h2>Brand Campaign</h2>
+			<p>Graphic design</p>
+		</div> {% endcomment %}
+	</div>
+<div class="homepage-item">Newsletter</div>
+</div>
+{% endblock %}  
